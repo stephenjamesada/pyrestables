@@ -9,3 +9,4 @@ It is entirely written in Python.
     - `bytes2human`
 - `platform`
 - `tabulate`
+- `argparse`
