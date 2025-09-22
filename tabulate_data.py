@@ -1,6 +1,11 @@
 import platform
 import psutil
 from psutil._common import bytes2human
+import colorama
+from colorama import Fore, Back, Style
+
+green = Fore.GREEN
+reset = Style.RESET_ALL
 
 cpu_times = psutil.cpu_times()
 cpu_stats = psutil.cpu_stats()
@@ -11,12 +16,12 @@ swap_memory = psutil.swap_memory()
 disk_usage = psutil.disk_usage('/')
 
 gen_sys = [
-    ["system", platform.system()],
-    ["machine", platform.machine()],
-    ["node", platform.node()],
-    ["platform", platform.platform()],
-    ["processor", platform.processor()],
-    ["release", platform.release()],
+    [f"{green}system{reset}", f"{green}{platform.system()}{reset}"],
+    [f"{green}machine{reset}", f"{green}{platform.machine()}{reset}"],
+    [f"{green}node{reset}", f"{green}{platform.node()}{reset}"],
+    [f"{green}platform{reset}", f"{green}{platform.platform()}{reset}"],
+    [f"{green}processor{reset}", f"{green}{platform.processor()}{reset}"],
+    [f"{green}release{reset}", f"{green}{platform.release()}{reset}"],
 ]
 
 # CPU

@@ -10,3 +10,4 @@ It is entirely written in Python.
 - `platform`
 - `tabulate`
 - `argparse`
+- `colorama`

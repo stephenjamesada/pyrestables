@@ -2,21 +2,29 @@ from tabulate import tabulate
 import tabulate_data
 import argparse
 import pyfiglet
+import colorama
+from colorama import Fore, Back, Style
+
+colorama.init(autoreset=True)
+
+green = Fore.GREEN
+blue = Fore.BLUE
+reset = Style.RESET_ALL
 
 figlet = pyfiglet.Figlet()
 
 def clear():
     print("\033c", end="")
 
-system_information = tabulate(tabulate_data.gen_sys, headers=["key", "value"], tablefmt="simple_outline")
-cpu_stat = tabulate(tabulate_data.cpu_statistics, headers=["key", "value"], tablefmt="simple_outline")
-cpu_time = tabulate(tabulate_data.cpu_times, headers=["key", "value"], tablefmt="simple_outline")
-cpu_counts = tabulate(tabulate_data.count_cpu, headers=["key", "value"], tablefmt="simple_outline")
-cpu_freqs = tabulate(tabulate_data.cpu_frequencies, headers=["key", "value"], tablefmt="simple_outline")
-cpu_aver = tabulate(tabulate_data.cpu_average, headers=["key", "value"], tablefmt="simple_outline")
-virt_mem = tabulate(tabulate_data.vir_mem, headers=["key", "value"], tablefmt="simple_outline")
-swap_mem = tabulate(tabulate_data.swap_mem, headers=["key", "value"], tablefmt="simple_outline")
-dsk_usg = tabulate(tabulate_data.dsk_usg, headers=["key", "value"], tablefmt="simple_outline")
+system_information = tabulate(tabulate_data.gen_sys, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt=f"simple_outline")
+cpu_stat = tabulate(tabulate_data.cpu_statistics, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
+cpu_time = tabulate(tabulate_data.cpu_times, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
+cpu_counts = tabulate(tabulate_data.count_cpu, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
+cpu_freqs = tabulate(tabulate_data.cpu_frequencies, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
+cpu_aver = tabulate(tabulate_data.cpu_average, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
+virt_mem = tabulate(tabulate_data.vir_mem, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
+swap_mem = tabulate(tabulate_data.swap_mem, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
+dsk_usg = tabulate(tabulate_data.dsk_usg, headers=[f"{green}key{reset}", f"{green}value{reset}"], tablefmt="simple_outline")
 
 parser = argparse.ArgumentParser(description="Pythonic resource tables.")
 
