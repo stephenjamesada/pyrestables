@@ -27,7 +27,7 @@ gen_sys = [
 # CPU
 
 count_cpu = [
-    ["cpu count", psutil.cpu_count()]
+    [f"{green}cpu count{reset}", psutil.cpu_count()]
 ]
 
 cpu_times = [
