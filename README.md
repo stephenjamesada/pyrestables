@@ -29,3 +29,10 @@ This will change as the project grows, but this is the quick, ubiquitous way.
 
 I used modules like `colorama` to get to know the common utilities used in tons of different Python projects.
 I would've used Rich for styling, but I wanted this project to be simpler in its design, and to learn basics.
+
+##### To-Do
+
+- Add colors to values to show varying levels of urgency:
+    - **Cyan**: Normal
+    - **Yellow**: Caution
+    - **Red**: Critical
