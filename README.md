@@ -22,9 +22,9 @@ cd pyrestables
 python3 pyrestables.py
 ```
 
-This will change as the project grows, but this is the quick. ubiquitous way.
+This will change as the project grows, but this is the quick, ubiquitous way.
 
 #### Developer Notes
 
-I used modules like `colorama` to get to know the common utilities.
-I would've used Rich, but I wanted this project to be simpler in its design.
+I used modules like `colorama` to get to know the common utilities used in tons of different Python projects.
+I would've used Rich for styling, but I wanted this project to be simpler in its design, and to learn basics.
