@@ -19,6 +19,7 @@ Here's how to run ***PyResTables***:
 ```
 git clone https://github.com/stephenjamesada/pyrestables.git
 cd pyrestables
+pip install -r requirements.txt
 python3 pyrestables.py
 ```
 
