@@ -1,11 +1,18 @@
+# TODO: Add psutil network connections 
+# TODO: Add yellow colors to certain values to indicate caution
+
 import platform
 import psutil
 from psutil._common import bytes2human
 import colorama
 from colorama import Fore, Back, Style
+from tabulate import tabulate
 
 green = Fore.GREEN
 cyan = Fore.CYAN
+yellow = Fore.YELLOW
+red = Fore.RED
+bold = Style.BRIGHT
 reset = Style.RESET_ALL
 
 cpu_times = psutil.cpu_times()
@@ -15,6 +22,57 @@ load_average = psutil.getloadavg()
 virtual_memory = psutil.virtual_memory()
 swap_memory = psutil.swap_memory()
 disk_usage = psutil.disk_usage('/')
+
+# Data Functions
+
+def active_net_interfaces():
+    net_io = psutil.net_io_counters(pernic=True)
+    net_stats = psutil.net_if_stats()
+
+    rows = []
+    for iface, stats in net_io.items():
+        if net_stats[iface].isup:
+            rows.append([
+                            f"{cyan}{iface}{reset}",
+                            f"{cyan}{bytes2human(stats.bytes_sent)}{reset}",
+                            f"{cyan}{bytes2human(stats.bytes_recv)}{reset}",
+                            f"{cyan}{stats.packets_sent}{reset}",
+                            f"{cyan}{stats.packets_recv}{reset}",
+                            f"{red}{bold}{stats.errin}{reset}",
+                            f"{red}{bold}{stats.errout}{reset}",
+                            f"{red}{bold}{stats.dropin}{reset}",
+                            f"{red}{bold}{stats.dropout}{reset}"
+                        ])
+
+            headers = [
+                f"{green}interface{reset}",
+                f"{green}bytes sent{reset}",
+                f"{green}bytes received{reset}",
+                f"{green}packets sent{reset}",
+                f"{green}packets received{reset}",
+                f"{green}errors while receiving{reset}",
+                f"{green}errors while sending{reset}",
+                f"{green}packets dropped (incoming){reset}",
+                f"{green}packets dropped (outgoing){reset}"
+            ]
+            return tabulate(rows, headers=headers, tablefmt="simple_outline")
+
+def net_conn():
+    net_connections = psutil.net_connections(kind='inet')
+
+    rows = []
+    for stats in sconn:
+         rows.append([
+                         f"{cyan}{net_connections.fd}{reset}",
+                         f"{cyan}{net_connections.family}{reset}",
+                         f"{cyan}{net_connections.type}{reset}",
+                         f"{cyan}{net_connections.laddr.ip}{reset}",
+                         f"{cyan}{net_connections.laddr.port}{reset}",
+                         f"{cyan}{net_connections.raddr.ip}{reset}",
+                         f"{cyan}{net_connections.raddr.port}{reset}",
+                         f"{cyan}{net_connections.status}{reset}",
+                         f"{cyan}{net_connections.pid}{reset}"
+                     ])
 
 gen_sys = [
     [f"{green}system{reset}", f"{cyan}{platform.system()}{reset}"],

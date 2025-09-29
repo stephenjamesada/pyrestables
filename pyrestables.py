@@ -10,7 +10,6 @@ from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 
 green = Fore.GREEN
-blue = Fore.BLUE
 reset = Style.RESET_ALL
 
 figlet = pyfiglet.Figlet()
@@ -32,8 +31,7 @@ parser = argparse.ArgumentParser(description="Pythonic resource tables.")
 
 parser.add_argument("--all",
                     action="store_true",
-                    help="Outputs all parsable system information"
-)
+                    help="Outputs all parsable system information")
 
 parser.add_argument("--general-info",
                      action="store_true",
@@ -49,13 +47,11 @@ parser.add_argument("--cpu-time",
 
 parser.add_argument("--cpu-count",
                      action="store_true",
-                     help="Outputs total CPU count"
-)
+                     help="Outputs total CPU count")
 
 parser.add_argument("--cpu-frequency",
                     action="store_true",
-                    help="Outputs current, minimum, and maximum CPU frequencies"
-)
+                    help="Outputs current, minimum, and maximum CPU frequencies")
 
 parser.add_argument("--cpu-average",
                     action="store_true",
@@ -63,8 +59,7 @@ parser.add_argument("--cpu-average",
 
 parser.add_argument("--cpu-all",
                     action="store_true",
-                    help="Outputs all CPU-related information"
-)
+                    help="Outputs all CPU-related information")
 
 parser.add_argument("--virtual-mem",
                     action="store_true",
@@ -77,6 +72,14 @@ parser.add_argument("--swap-mem",
 parser.add_argument("--disk-usage",
                     action="store_true",
                     help="Outputs current disk usage on the system")
+
+parser.add_argument("--active-nets",
+                    action="store_true",
+                    help="Outputs all active network interfaces with packet, error, and byte info")
+
+parser.add_argument("--connections",
+                    action="store_true",
+                    help="Outputs all current network connections")
 
 args = parser.parse_args()
 
@@ -129,6 +132,16 @@ elif args.disk_usage:
     print(f"{green}{figlet.renderText("Disk Usage")}{reset}")
     print("━" * 47)
     print(f"\n{dsk_usg}\n")
+elif args.active_nets:
+    clear()
+    print(f"{green}{figlet.renderText("Network Interfaces")}{reset}")
+    print("━" * 47)
+    print(f"\n{tabulate_data.active_net_interfaces()}\n")
+elif args.connections:
+    clear()
+    print(f"{green}{figlet.renderText("Network Connections")}{reset}")
+    print("━" * 47)
+    print(f"\n{net_conn()}\n")
 elif args.all:
     clear()
     print(f"{green}{figlet.renderText("System Info")}{reset}")
@@ -158,36 +171,42 @@ elif args.all:
     print(f"{green}{figlet.renderText("Disk Usage")}{reset}")
     print("━" * 47)
     print(f"\n{dsk_usg}\n")
+    print(f"{green}{figlet.renderText("Network Interfaces")}{reset}")
+    print("━" * 47)
+    print(f"\n{tabulate_data.active_net_interfaces()}\n")
 else:
     clear()
-    print(figlet.renderText("System Info"))
+    print(f"{green}{figlet.renderText("System Info")}{reset}")
     print("━" * 56)
     print(f"\n{system_information}\n")
-    print(figlet.renderText("CPU Stats"))
+    print(f"{green}{figlet.renderText("CPU Stats")}{reset}")
     print("━" * 43)
     print(f"\n{cpu_stat}\n")
-    print(figlet.renderText("CPU Times"))
+    print(f"{green}{figlet.renderText("CPU Times")}{reset}")
     print("━" * 48)
     print(f"\n{cpu_time}\n")
-    print(figlet.renderText("CPU Count"))
+    print(f"{green}{figlet.renderText("CPU Count")}{reset}")
     print("━" * 48)
     print(f"\n{cpu_counts}\n")
-    print(figlet.renderText("CPU Frequencies"))
+    print(f"{green}{figlet.renderText("CPU Frequencies")}{reset}")
     print("━" * 75)
     print(f"\n{cpu_freqs}\n")
-    print(figlet.renderText("CPU Average"))
+    print(f"{green}{figlet.renderText("CPU Average")}{reset}")
     print("━" * 57)
     print(f"\n{cpu_aver}\n")
-    print(figlet.renderText("Virtual Memory"))
+    print(f"{green}{figlet.renderText("Virtual Memory")}{reset}")
     print("━" * 75)
     print(f"\n{virt_mem}\n")
-    print(figlet.renderText("Swap Memory"))
+    print(f"{green}{figlet.renderText("Swap Memory")}{reset}")
     print("━" * 66)
     print(f"\n{swap_mem}\n")
-    print(figlet.renderText("Disk Usage"))
+    print(f"{green}{figlet.renderText("Disk Usage")}{reset}")
     print("━" * 47)
     print(f"\n{dsk_usg}\n")
-        
+    print(f"{green}{figlet.renderText("Network Interfaces")}{reset}")
+    print("━" * 47)
+    print(f"\n{tabulate_data.active_net_interfaces()}\n")
+    
 """
 I recommend you use a pager when you run this flagless, or when you run the "--all" flag.
 """
