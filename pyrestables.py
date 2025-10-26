@@ -77,10 +77,6 @@ parser.add_argument("--active-nets",
                     action="store_true",
                     help="Outputs all active network interfaces with packet, error, and byte info")
 
-parser.add_argument("--connections",
-                    action="store_true",
-                    help="Outputs all current network connections")
-
 args = parser.parse_args()
 
 if args.general_info:
@@ -137,11 +133,6 @@ elif args.active_nets:
     print(f"{green}{figlet.renderText("Network Interfaces")}{reset}")
     print("━" * 47)
     print(f"\n{tabulate_data.active_net_interfaces()}\n")
-elif args.connections:
-    clear()
-    print(f"{green}{figlet.renderText("Network Connections")}{reset}")
-    print("━" * 47)
-    print(f"\n{net_conn()}\n")
 elif args.all:
     clear()
     print(f"{green}{figlet.renderText("System Info")}{reset}")

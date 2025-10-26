@@ -23,6 +23,17 @@ virtual_memory = psutil.virtual_memory()
 swap_memory = psutil.swap_memory()
 disk_usage = psutil.disk_usage('/')
 
+# System Information
+
+gen_sys = [
+    [f"{green}system{reset}", f"{cyan}{platform.system()}{reset}"],
+    [f"{green}machine{reset}", f"{cyan}{platform.machine()}{reset}"],
+    [f"{green}node{reset}", f"{cyan}{platform.node()}{reset}"],
+    [f"{green}platform{reset}", f"{cyan}{platform.platform()}{reset}"],
+    [f"{green}processor{reset}", f"{cyan}{platform.processor()}{reset}"],
+    [f"{green}release{reset}", f"{cyan}{platform.release()}{reset}"],
+]
+
 # Data Functions
 
 def active_net_interfaces():
@@ -56,32 +67,6 @@ def active_net_interfaces():
                 f"{green}packets dropped (outgoing){reset}"
             ]
             return tabulate(rows, headers=headers, tablefmt="simple_outline")
-
-def net_conn():
-    net_connections = psutil.net_connections(kind='inet')
-
-    rows = []
-    for stats in sconn:
-         rows.append([
-                         f"{cyan}{net_connections.fd}{reset}",
-                         f"{cyan}{net_connections.family}{reset}",
-                         f"{cyan}{net_connections.type}{reset}",
-                         f"{cyan}{net_connections.laddr.ip}{reset}",
-                         f"{cyan}{net_connections.laddr.port}{reset}",
-                         f"{cyan}{net_connections.raddr.ip}{reset}",
-                         f"{cyan}{net_connections.raddr.port}{reset}",
-                         f"{cyan}{net_connections.status}{reset}",
-                         f"{cyan}{net_connections.pid}{reset}"
-                     ])
-
-gen_sys = [
-    [f"{green}system{reset}", f"{cyan}{platform.system()}{reset}"],
-    [f"{green}machine{reset}", f"{cyan}{platform.machine()}{reset}"],
-    [f"{green}node{reset}", f"{cyan}{platform.node()}{reset}"],
-    [f"{green}platform{reset}", f"{cyan}{platform.platform()}{reset}"],
-    [f"{green}processor{reset}", f"{cyan}{platform.processor()}{reset}"],
-    [f"{green}release{reset}", f"{cyan}{platform.release()}{reset}"],
-]
 
 # CPU
 
