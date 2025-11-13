@@ -27,14 +27,6 @@ This will change as the project grows, but this is the quick, ubiquitous way.
 
 #### Developer Notes
 
-I used modules like `colorama` to get to know the common utilities used in tons of different Python projects.
-I would've used Rich for styling, but I wanted this project to be simpler in its design, and to learn basics.
-
-#### To-Do
-
-- Add colors to values to show varying levels of urgency:
-    - **Cyan**: Normal
-    - **Yellow**: Caution
-    - **Red**: Critical
-
-![PyResTables demo](pyrestables.gif)
+- I used modules like `colorama` to get to know the common utilities used in tons of different Python projects.
+- I would've used Rich for styling, but I wanted this project to be simpler in its design, and to learn basics.
+- *This project has concluded*, but a v2 will be made from the ground up, with more modern tools rather than continuing to make things harder for me.
